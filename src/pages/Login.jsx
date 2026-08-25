@@ -17,7 +17,7 @@ function Login() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_URL}/auth/login`, {
+      const response = await fetch("https://face-attendance-backend-f7e0.onrender.com/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
