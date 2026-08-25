@@ -1,4 +1,4 @@
-const API_URL = "https://face-attendance-app-eyro.onrender.com/api";
+const API_URL = "https://face-attendance-backend-f7e0.onrender.com";
 
 const apiRequest = async (endpoint, options = {}) => {
   const token = localStorage.getItem("token");
