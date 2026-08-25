@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import apiRequest from "../utils/api";
 
-const AI_API = "http://localhost:8000";
+const AI_API = "https://face-attendance-ai.onrender.com";
 const MATCH_THRESHOLD = 0.45;
 
 function Attendance() {
