@@ -91,7 +91,7 @@ function Students() {
       formData.append("file", file);
 
       const response = await fetch(
-        "http://localhost:8000/get-face-embedding",
+        "https://face-attendance-ai.onrender.com/get-face-embedding",
         {
           method: "POST",
           body: formData,

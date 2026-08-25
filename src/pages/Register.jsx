@@ -39,7 +39,7 @@ function Register() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/auth/register",
+        "https://face-attendance-backend-f7e0.onrender.com/api/auth/register",
         {
           method: "POST",
           headers: {
