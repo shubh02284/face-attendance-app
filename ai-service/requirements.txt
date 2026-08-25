@@ -1,6 +1,7 @@
 fastapi
 uvicorn
-face-recognition
 numpy
 pillow
 python-multipart
+dlib-bin
+face-recognition
