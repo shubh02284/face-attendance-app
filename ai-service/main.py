@@ -17,7 +17,7 @@ app.add_middleware(
 print("Loading InsightFace AI model...")
 
 face_app = FaceAnalysis(
-    name="buffalo_s",
+    name="buffalo_sc",
     providers=["CPUExecutionProvider"]
 )
 
