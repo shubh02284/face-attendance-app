@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Sidebar from "./components/Sidebar";
@@ -15,19 +16,23 @@ import Register from "./pages/Register";
 
 function ProtectedLayout({ children }) {
   const token = localStorage.getItem("token");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   if (!token) {
     return <Navigate to="/login" replace />;
   }
 
   return (
-    <div className="flex min-h-screen w-full overflow-hidden bg-slate-50 dark:bg-slate-900">
-      <Sidebar />
+    <div className="flex min-h-screen w-full overflow-hidden bg-slate-50 dark:bg-slate-950">
+      <Sidebar
+        mobileOpen={mobileMenuOpen}
+        setMobileOpen={setMobileMenuOpen}
+      />
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <Topbar />
+        <Topbar onMenuClick={() => setMobileMenuOpen(true)} />
 
-        <main className="min-w-0 flex-1 overflow-y-auto p-6">
+        <main className="min-w-0 flex-1 overflow-x-hidden overflow-y-auto p-4 sm:p-6">
           {children}
         </main>
       </div>
@@ -41,7 +46,6 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Public Routes */}
         <Route
           path="/login"
           element={
@@ -56,7 +60,6 @@ function App() {
           }
         />
 
-        {/* Protected Routes */}
         <Route
           path="/dashboard"
           element={
@@ -120,7 +123,6 @@ function App() {
           }
         />
 
-        {/* Default */}
         <Route
           path="/"
           element={
