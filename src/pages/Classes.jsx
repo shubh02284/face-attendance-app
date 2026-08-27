@@ -152,11 +152,11 @@ function Classes() {
             ACADEMIC MANAGEMENT
           </p>
 
-          <h1 className="mt-2 text-3xl font-bold text-slate-900">
+          <h1 className="mt-2 text-3xl font-bold text-slate-900 dark:text-white">
             Classes
           </h1>
 
-          <p className="mt-2 text-slate-500">
+          <p className="mt-2 text-slate-500 dark:text-slate-400">
             Manage branches, semesters, sections and subjects.
           </p>
         </div>
@@ -171,51 +171,51 @@ function Classes() {
       </div>
 
       <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="rounded-2xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800 p-6 shadow-sm">
           <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-900 text-white">
             <GraduationCap size={22} />
           </div>
 
-          <p className="mt-5 text-sm font-medium text-slate-500">
+          <p className="mt-5 text-sm font-medium text-slate-500 dark:text-slate-400">
             Total Classes
           </p>
 
-          <h2 className="mt-1 text-3xl font-bold text-slate-900">
+          <h2 className="mt-1 text-3xl font-bold text-slate-900 dark:text-white">
             {classes.length}
           </h2>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+        <div className="rounded-2xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800 p-6 shadow-sm">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400">
             <Users size={22} />
           </div>
 
-          <p className="mt-5 text-sm font-medium text-slate-500">
+          <p className="mt-5 text-sm font-medium text-slate-500 dark:text-slate-400">
             Total Students
           </p>
 
-          <h2 className="mt-1 text-3xl font-bold text-slate-900">
+          <h2 className="mt-1 text-3xl font-bold text-slate-900 dark:text-white">
             {totalStudents}
           </h2>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-50 text-purple-600">
+        <div className="rounded-2xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800 p-6 shadow-sm">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-50 text-purple-600 dark:bg-purple-950/40 dark:text-purple-400">
             <BookOpen size={22} />
           </div>
 
-          <p className="mt-5 text-sm font-medium text-slate-500">
+          <p className="mt-5 text-sm font-medium text-slate-500 dark:text-slate-400">
             Active Subjects
           </p>
 
-          <h2 className="mt-1 text-3xl font-bold text-slate-900">
+          <h2 className="mt-1 text-3xl font-bold text-slate-900 dark:text-white">
             {totalSubjects}
           </h2>
         </div>
       </div>
 
       {loading ? (
-        <div className="py-16 text-center text-sm text-slate-500">
+        <div className="py-16 text-center text-sm text-slate-500 dark:text-slate-400">
           Loading classes...
         </div>
       ) : (
@@ -224,7 +224,7 @@ function Classes() {
             {classes.map((item) => (
               <div
                 key={item._id}
-                className="group min-w-0 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md"
+                className="group min-w-0 rounded-2xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800 p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
@@ -233,11 +233,11 @@ function Classes() {
                     </div>
 
                     <div>
-                      <h2 className="font-bold text-slate-900">
+                      <h2 className="font-bold text-slate-900 dark:text-white">
                         {item.branch}
                       </h2>
 
-                      <p className="text-sm text-slate-500">
+                      <p className="text-sm text-slate-500 dark:text-slate-400">
                         {item.semester} • Section {item.section}
                       </p>
                     </div>
@@ -251,23 +251,23 @@ function Classes() {
                   </button>
                 </div>
 
-                <div className="mt-6 flex items-center justify-between rounded-xl bg-slate-50 p-4">
+                <div className="mt-6 flex items-center justify-between rounded-xl bg-slate-50 p-4 dark:bg-slate-700">
                   <div className="flex items-center gap-2">
-                    <Users size={18} className="text-slate-500" />
+                    <Users size={18} className="text-slate-500 dark:text-slate-400" />
 
-                    <span className="text-sm font-medium text-slate-600">
+                    <span className="text-sm font-medium text-slate-600 dark:text-slate-300">
                       Students
                     </span>
                   </div>
 
-                  <span className="font-bold text-slate-900">
+                  <span className="font-bold text-slate-900 dark:text-white">
                     {item.students}
                   </span>
                 </div>
 
                 <div className="mt-5">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-sm font-semibold text-slate-800">
+                    <h3 className="text-sm font-semibold text-slate-800 dark:text-white">
                       Subjects
                     </h3>
 
@@ -280,7 +280,7 @@ function Classes() {
                     {item.subjects?.map((subject) => (
                       <span
                         key={subject}
-                        className="rounded-lg bg-slate-100 px-3 py-2 text-xs font-medium text-slate-600"
+                        className="rounded-lg bg-slate-100 px-3 py-2 text-xs font-medium text-slate-600 dark:bg-slate-700 dark:text-slate-300"
                       >
                         {subject}
                       </span>
@@ -288,7 +288,7 @@ function Classes() {
                   </div>
                 </div>
 
-                <button className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
+                <button className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 py-3 text-sm font-semibold text-slate-700 dark:border-slate-600 dark:text-slate-200 transition hover:bg-slate-50 dark:hover:bg-slate-700">
                   View Class
                   <ChevronRight size={17} />
                 </button>
@@ -297,17 +297,17 @@ function Classes() {
           </div>
 
           {classes.length === 0 && (
-            <div className="mt-8 rounded-2xl border border-dashed border-slate-300 bg-white py-16 text-center">
+            <div className="mt-8 rounded-2xl border border-dashed border-slate-300 bg-white dark:border-slate-600 dark:bg-slate-800 py-16 text-center">
               <GraduationCap
                 size={40}
                 className="mx-auto text-slate-300"
               />
 
-              <h2 className="mt-4 font-bold text-slate-800">
+              <h2 className="mt-4 font-bold text-slate-800 dark:text-white">
                 No classes yet
               </h2>
 
-              <p className="mt-2 text-sm text-slate-500">
+              <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
                 Add your first class to get started.
               </p>
             </div>
@@ -320,15 +320,15 @@ function Classes() {
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white shadow-2xl"
+            className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white shadow-2xl dark:bg-slate-800"
           >
-            <div className="flex items-center justify-between border-b border-slate-100 p-6">
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-700 p-6">
               <div>
-                <h2 className="text-xl font-bold text-slate-900">
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">
                   Add New Class
                 </h2>
 
-                <p className="mt-1 text-sm text-slate-500">
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                   Create a class and assign its subjects.
                 </p>
               </div>
@@ -336,7 +336,7 @@ function Classes() {
               <button
                 onClick={closeModal}
                 disabled={saving}
-                className="rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-900"
+                className="rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-700 dark:hover:text-white dark:text-white"
               >
                 <X size={20} />
               </button>
@@ -345,7 +345,7 @@ function Classes() {
             <form onSubmit={handleAddClass} className="p-6">
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-slate-700">
+                  <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
                     Branch
                   </label>
 
@@ -353,7 +353,7 @@ function Classes() {
                     name="branch"
                     value={formData.branch}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-slate-900"
+                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:placeholder:text-slate-400 focus:border-slate-900"
                   >
                     <option value="">Select Branch</option>
                     <option>MCA</option>
@@ -363,7 +363,7 @@ function Classes() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-slate-700">
+                  <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
                     Semester
                   </label>
 
@@ -371,7 +371,7 @@ function Classes() {
                     name="semester"
                     value={formData.semester}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-slate-900"
+                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:placeholder:text-slate-400 focus:border-slate-900"
                   >
                     <option value="">Select Semester</option>
                     <option>Semester 1</option>
@@ -382,7 +382,7 @@ function Classes() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-slate-700">
+                  <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
                     Section
                   </label>
 
@@ -396,7 +396,7 @@ function Classes() {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-slate-700">
+                  <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
                     Number of Students
                   </label>
 
@@ -407,13 +407,13 @@ function Classes() {
                     value={formData.students}
                     onChange={handleChange}
                     placeholder="e.g. 45"
-                    className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-slate-900"
+                    className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:placeholder:text-slate-400 focus:border-slate-900"
                   />
                 </div>
               </div>
 
               <div className="mt-5">
-                <label className="mb-2 block text-sm font-medium text-slate-700">
+                <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
                   Subjects
                 </label>
 
@@ -422,7 +422,7 @@ function Classes() {
                   value={formData.subjects}
                   onChange={handleChange}
                   placeholder="DBMS, Operating Systems, Data Structures"
-                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-slate-900"
+                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:placeholder:text-slate-400 focus:border-slate-900"
                 />
 
                 <p className="mt-2 text-xs text-slate-400">
@@ -435,7 +435,7 @@ function Classes() {
                   type="button"
                   onClick={closeModal}
                   disabled={saving}
-                  className="rounded-xl border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50"
+                  className="rounded-xl border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 dark:border-slate-600 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-50"
                 >
                   Cancel
                 </button>

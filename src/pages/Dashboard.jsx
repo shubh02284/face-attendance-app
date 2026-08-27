@@ -60,9 +60,7 @@ function Dashboard() {
 
       const todayAttendance =
         totalTodayStudents > 0
-          ? Math.round(
-              (presentToday / totalTodayStudents) * 100
-            )
+          ? Math.round((presentToday / totalTodayStudents) * 100)
           : 0;
 
       const uniqueClasses = new Set(
@@ -138,7 +136,7 @@ function Dashboard() {
   if (loading) {
     return (
       <div className="flex min-h-[400px] items-center justify-center">
-        <p className="text-sm font-medium text-slate-500">
+        <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
           Loading dashboard...
         </p>
       </div>
@@ -169,20 +167,22 @@ function Dashboard() {
       transition={{ duration: 0.35 }}
       className="mx-auto w-full max-w-7xl"
     >
+      {/* Header */}
       <section className="mb-8">
         <p className="text-sm font-semibold tracking-wider text-slate-400">
           OVERVIEW
         </p>
 
-        <h1 className="mt-2 text-3xl font-bold text-slate-900">
+        <h1 className="mt-2 text-3xl font-bold text-slate-900 dark:text-white">
           Attendance Dashboard
         </h1>
 
-        <p className="mt-2 text-slate-500">
+        <p className="mt-2 text-slate-500 dark:text-slate-400">
           Track your classes and manage attendance effortlessly.
         </p>
       </section>
 
+      {/* Stats */}
       <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
         {stats.map((stat) => {
           const Icon = stat.icon;
@@ -190,21 +190,24 @@ function Dashboard() {
           return (
             <div
               key={stat.title}
-              className="min-w-0 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md"
+              className="min-w-0 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-md dark:border-slate-700 dark:bg-slate-800"
             >
               <div className="flex items-start justify-between">
                 <div className="rounded-xl bg-slate-900 p-3 text-white">
                   <Icon size={22} />
                 </div>
 
-                <ArrowUpRight size={20} className="text-slate-400" />
+                <ArrowUpRight
+                  size={20}
+                  className="text-slate-400"
+                />
               </div>
 
-              <p className="mt-5 text-sm font-medium text-slate-500">
+              <p className="mt-5 text-sm font-medium text-slate-500 dark:text-slate-400">
                 {stat.title}
               </p>
 
-              <h2 className="mt-1 text-3xl font-bold text-slate-900">
+              <h2 className="mt-1 text-3xl font-bold text-slate-900 dark:text-white">
                 {stat.value}
               </h2>
 
@@ -216,7 +219,9 @@ function Dashboard() {
         })}
       </section>
 
+      {/* Quick Action + Today's Activity */}
       <section className="mt-8 grid grid-cols-1 gap-6 xl:grid-cols-2">
+        {/* Take Attendance */}
         <div className="min-w-0 rounded-2xl bg-slate-900 p-8 text-white">
           <div className="flex h-full flex-col justify-between">
             <div>
@@ -236,7 +241,7 @@ function Dashboard() {
 
             <Link
               to="/attendance"
-              className="mt-8 inline-flex w-fit items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:scale-105"
+              className="mt-8 inline-flex w-fit items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-100 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
             >
               <Camera size={19} />
               Take Attendance
@@ -245,19 +250,23 @@ function Dashboard() {
           </div>
         </div>
 
-        <div className="min-w-0 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        {/* Today's Activity */}
+        <div className="min-w-0 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-lg font-bold text-slate-900">
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">
                 Today's Activity
               </h2>
 
-              <p className="mt-1 text-sm text-slate-500">
+              <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                 Latest attendance sessions
               </p>
             </div>
 
-            <Clock3 className="text-slate-400" size={22} />
+            <Clock3
+              className="text-slate-400"
+              size={22}
+            />
           </div>
 
           <div className="mt-6 space-y-5">
@@ -268,20 +277,21 @@ function Dashboard() {
               recentAttendance
                 .filter(
                   (item) =>
-                    item.date === new Date().toISOString().split("T")[0]
+                    item.date ===
+                    new Date().toISOString().split("T")[0]
                 )
                 .slice(0, 2)
                 .map((item) => (
                   <div
                     key={item.id}
-                    className="flex items-center justify-between border-b border-slate-100 pb-4 last:border-0"
+                    className="flex items-center justify-between border-b border-slate-100 pb-4 last:border-0 dark:border-slate-700"
                   >
                     <div className="min-w-0">
-                      <p className="truncate font-semibold text-slate-800">
+                      <p className="truncate font-semibold text-slate-800 dark:text-white">
                         {item.subject}
                       </p>
 
-                      <p className="mt-1 text-sm text-slate-500">
+                      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                         {item.className} • Section {item.section}
                       </p>
                     </div>
@@ -300,21 +310,22 @@ function Dashboard() {
         </div>
       </section>
 
-      <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+      {/* Recent Attendance */}
+      <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-lg font-bold text-slate-900">
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">
               Recent Attendance
             </h2>
 
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
               Recently completed attendance sessions
             </p>
           </div>
 
           <Link
             to="/history"
-            className="shrink-0 text-sm font-semibold text-slate-900 hover:underline"
+            className="shrink-0 text-sm font-semibold text-slate-900 hover:underline dark:text-white"
           >
             View All
           </Link>
@@ -325,14 +336,14 @@ function Dashboard() {
             recentAttendance.map((item) => (
               <div
                 key={item.id}
-                className="flex flex-col gap-4 rounded-xl border border-slate-100 p-4 lg:flex-row lg:items-center lg:justify-between"
+                className="flex flex-col gap-4 rounded-xl border border-slate-100 p-4 lg:flex-row lg:items-center lg:justify-between dark:border-slate-700"
               >
                 <div>
-                  <h3 className="font-semibold text-slate-800">
+                  <h3 className="font-semibold text-slate-800 dark:text-white">
                     {item.subject}
                   </h3>
 
-                  <p className="mt-1 text-sm text-slate-500">
+                  <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                     {item.className} • Section {item.section} •{" "}
                     {item.students}
                   </p>

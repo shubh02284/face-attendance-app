@@ -203,7 +203,9 @@ function Attendance() {
         );
       }
 
-      setStatusMessage("InsightFace AI is detecting classroom faces...");
+      setStatusMessage(
+        "InsightFace AI is detecting classroom faces..."
+      );
 
       const formData = new FormData();
       formData.append("file", imageFile);
@@ -372,7 +374,7 @@ function Attendance() {
     }
   };
 
-  const resetAttendance = () => {
+    const resetAttendance = () => {
     if (image) {
       URL.revokeObjectURL(image);
     }
@@ -415,7 +417,7 @@ function Attendance() {
         <button
           onClick={() => setShowResults(false)}
           disabled={saving || saved}
-          className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-slate-900 disabled:opacity-50"
+          className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-slate-900 disabled:opacity-50 dark:text-slate-400 dark:hover:text-white"
         >
           <ArrowLeft size={18} />
           Back to Attendance
@@ -426,62 +428,65 @@ function Attendance() {
             AI RECOGNITION RESULTS
           </p>
 
-          <h1 className="mt-2 text-3xl font-bold text-slate-900">
+          <h1 className="mt-2 text-3xl font-bold text-slate-900 dark:text-white">
             Attendance Results
           </h1>
 
-          <p className="mt-2 text-slate-500">
+          <p className="mt-2 text-slate-500 dark:text-slate-400">
             AI recognized students from the classroom photo.
           </p>
         </div>
 
+        {/* Result Stats */}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-900 text-white">
               <Users size={22} />
             </div>
 
-            <p className="mt-5 text-sm font-medium text-slate-500">
+            <p className="mt-5 text-sm font-medium text-slate-500 dark:text-slate-400">
               Faces Detected
             </p>
 
-            <h2 className="mt-1 text-3xl font-bold text-slate-900">
+            <h2 className="mt-1 text-3xl font-bold text-slate-900 dark:text-white">
               {totalFaces}
             </h2>
           </div>
 
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40">
               <UserCheck size={22} />
             </div>
 
-            <p className="mt-5 text-sm font-medium text-slate-500">
+            <p className="mt-5 text-sm font-medium text-slate-500 dark:text-slate-400">
               Present
             </p>
 
-            <h2 className="mt-1 text-3xl font-bold text-slate-900">
+            <h2 className="mt-1 text-3xl font-bold text-slate-900 dark:text-white">
               {recognizedStudents.length}
             </h2>
           </div>
 
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-red-50 text-red-500">
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-red-50 text-red-500 dark:bg-red-950/40">
               <UserX size={22} />
             </div>
 
-            <p className="mt-5 text-sm font-medium text-slate-500">
+            <p className="mt-5 text-sm font-medium text-slate-500 dark:text-slate-400">
               Unknown Faces
             </p>
 
-            <h2 className="mt-1 text-3xl font-bold text-slate-900">
+            <h2 className="mt-1 text-3xl font-bold text-slate-900 dark:text-white">
               {unknownFaces.length}
             </h2>
           </div>
         </div>
 
+        {/* Photo + Recognition */}
         <div className="mt-6 grid grid-cols-1 gap-6 xl:grid-cols-[0.8fr_1.2fr]">
-          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-            <h2 className="text-lg font-bold text-slate-900">
+          {/* Class Photo */}
+          <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white">
               Class Photo
             </h2>
 
@@ -493,18 +498,18 @@ function Attendance() {
               />
             </div>
 
-            <div className="mt-5 rounded-xl bg-slate-50 p-4">
-              <p className="text-sm font-semibold text-slate-800">
+            <div className="mt-5 rounded-xl bg-slate-50 p-4 dark:bg-slate-700">
+              <p className="text-sm font-semibold text-slate-800 dark:text-white">
                 {branch} • {semester} • Section {section}
               </p>
 
-              <p className="mt-1 text-sm text-slate-500">
+              <p className="mt-1 text-sm text-slate-500 dark:text-slate-300">
                 {subject}
               </p>
             </div>
 
-            <div className="mt-4 rounded-xl bg-red-50 p-4">
-              <p className="text-sm font-semibold text-red-600">
+            <div className="mt-4 rounded-xl bg-red-50 p-4 dark:bg-red-950/30">
+              <p className="text-sm font-semibold text-red-600 dark:text-red-400">
                 Absent Students: {absentStudents.length}
               </p>
 
@@ -513,7 +518,7 @@ function Attendance() {
                   {absentStudents.map((student) => (
                     <p
                       key={student.id}
-                      className="text-sm text-slate-600"
+                      className="text-sm text-slate-600 dark:text-slate-300"
                     >
                       {student.name} — {student.rollNo}
                     </p>
@@ -523,19 +528,20 @@ function Attendance() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          {/* Recognition Results */}
+          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-lg font-bold text-slate-900">
+                <h2 className="text-lg font-bold text-slate-900 dark:text-white">
                   Recognition Results
                 </h2>
 
-                <p className="mt-1 text-sm text-slate-500">
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                   AI matched detected faces with enrolled students.
                 </p>
               </div>
 
-              <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600 dark:bg-slate-700 dark:text-slate-300">
                 {totalFaces} Faces
               </span>
             </div>
@@ -544,14 +550,14 @@ function Attendance() {
               {results.map((student) => (
                 <div
                   key={student.id}
-                  className="flex items-center justify-between rounded-xl border border-slate-100 p-4"
+                  className="flex items-center justify-between rounded-xl border border-slate-100 p-4 dark:border-slate-700"
                 >
                   <div className="min-w-0">
-                    <p className="truncate font-semibold text-slate-800">
+                    <p className="truncate font-semibold text-slate-800 dark:text-white">
                       {student.name}
                     </p>
 
-                    <p className="mt-1 text-sm text-slate-500">
+                    <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                       {student.rollNo}
                       {student.similarity !== undefined &&
                         ` • Match: ${student.similarity}`}
@@ -561,8 +567,8 @@ function Attendance() {
                   <span
                     className={`ml-4 shrink-0 rounded-full px-3 py-1 text-xs font-semibold ${
                       student.status === "Present"
-                        ? "bg-emerald-50 text-emerald-600"
-                        : "bg-red-50 text-red-500"
+                        ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400"
+                        : "bg-red-50 text-red-500 dark:bg-red-950/40 dark:text-red-400"
                     }`}
                   >
                     {student.status}
@@ -578,12 +584,13 @@ function Attendance() {
                 className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-4 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:opacity-60"
               >
                 <Save size={20} />
+
                 {saving
                   ? "Saving Attendance..."
                   : "Confirm & Save Attendance"}
               </button>
             ) : (
-              <div className="mt-6 flex items-center justify-center gap-2 rounded-xl bg-emerald-50 px-5 py-4 text-sm font-semibold text-emerald-600">
+              <div className="mt-6 flex items-center justify-center gap-2 rounded-xl bg-emerald-50 px-5 py-4 text-sm font-semibold text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400">
                 <CheckCircle2 size={20} />
                 Attendance Saved Successfully
               </div>
@@ -592,7 +599,7 @@ function Attendance() {
             {saved && (
               <button
                 onClick={resetAttendance}
-                className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-700"
               >
                 <RotateCcw size={18} />
                 Take New Attendance
@@ -604,36 +611,39 @@ function Attendance() {
     );
   }
 
-  return (
+    return (
     <motion.div
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35 }}
       className="mx-auto w-full max-w-6xl"
     >
+      {/* Page Header */}
       <div className="mb-8">
         <p className="text-sm font-semibold tracking-wider text-slate-400">
           AI ATTENDANCE
         </p>
 
-        <h1 className="mt-2 text-3xl font-bold text-slate-900">
+        <h1 className="mt-2 text-3xl font-bold text-slate-900 dark:text-white">
           Take Attendance
         </h1>
 
-        <p className="mt-2 text-slate-500">
+        <p className="mt-2 text-slate-500 dark:text-slate-400">
           Select class details and upload a classroom photo.
         </p>
       </div>
 
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-[0.9fr_1.1fr]">
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <h2 className="text-lg font-bold text-slate-900">
+        {/* Class Details */}
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white">
             Class Details
           </h2>
 
           <div className="mt-6 space-y-5">
+            {/* Branch */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-700">
+              <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
                 Branch
               </label>
 
@@ -641,7 +651,7 @@ function Attendance() {
                 value={branch}
                 onChange={(e) => handleBranchChange(e.target.value)}
                 disabled={loadingClasses}
-                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-slate-900 disabled:opacity-60"
+                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none focus:border-slate-900 disabled:opacity-60 dark:border-slate-600 dark:bg-slate-700 dark:text-white"
               >
                 <option value="">
                   {loadingClasses
@@ -657,8 +667,9 @@ function Attendance() {
               </select>
             </div>
 
+            {/* Semester */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-700">
+              <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
                 Semester
               </label>
 
@@ -668,7 +679,7 @@ function Attendance() {
                   handleSemesterChange(e.target.value)
                 }
                 disabled={!branch}
-                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-slate-900 disabled:opacity-60"
+                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none focus:border-slate-900 disabled:opacity-60 dark:border-slate-600 dark:bg-slate-700 dark:text-white"
               >
                 <option value="">Select Semester</option>
 
@@ -680,8 +691,9 @@ function Attendance() {
               </select>
             </div>
 
+            {/* Section */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-700">
+              <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
                 Section
               </label>
 
@@ -691,7 +703,7 @@ function Attendance() {
                   handleSectionChange(e.target.value)
                 }
                 disabled={!semester}
-                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-slate-900 disabled:opacity-60"
+                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none focus:border-slate-900 disabled:opacity-60 dark:border-slate-600 dark:bg-slate-700 dark:text-white"
               >
                 <option value="">Select Section</option>
 
@@ -703,8 +715,9 @@ function Attendance() {
               </select>
             </div>
 
+            {/* Subject */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-slate-700">
+              <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
                 Subject
               </label>
 
@@ -712,7 +725,7 @@ function Attendance() {
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
                 disabled={!section}
-                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-slate-900 disabled:opacity-60"
+                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none focus:border-slate-900 disabled:opacity-60 dark:border-slate-600 dark:bg-slate-700 dark:text-white"
               >
                 <option value="">Select Subject</option>
 
@@ -725,18 +738,19 @@ function Attendance() {
             </div>
           </div>
 
-          <div className="mt-8 rounded-xl bg-slate-50 p-4">
+          {/* AI Information */}
+          <div className="mt-8 rounded-xl bg-slate-50 p-4 dark:bg-slate-700">
             <div className="flex gap-3">
-              <div className="rounded-lg bg-white p-2 shadow-sm">
+              <div className="rounded-lg bg-white p-2 shadow-sm dark:bg-slate-600">
                 <ScanFace size={20} />
               </div>
 
               <div>
-                <p className="text-sm font-semibold text-slate-800">
+                <p className="text-sm font-semibold text-slate-800 dark:text-white">
                   AI Face Recognition
                 </p>
 
-                <p className="mt-1 text-xs leading-5 text-slate-500">
+                <p className="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-300">
                   Students are recognized automatically using their
                   enrolled AI face embeddings.
                 </p>
@@ -745,14 +759,15 @@ function Attendance() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        {/* Class Photo */}
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
           <div className="flex items-start justify-between">
             <div>
-              <h2 className="text-lg font-bold text-slate-900">
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white">
                 Class Photo
               </h2>
 
-              <p className="mt-1 text-sm text-slate-500">
+              <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                 Upload a clear classroom photo.
               </p>
             </div>
@@ -761,7 +776,7 @@ function Attendance() {
               <button
                 onClick={removeImage}
                 disabled={processing}
-                className="rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-red-500 disabled:opacity-50"
+                className="rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-red-500 disabled:opacity-50 dark:hover:bg-slate-700"
               >
                 <X size={20} />
               </button>
@@ -769,22 +784,22 @@ function Attendance() {
           </div>
 
           {!image ? (
-            <div className="mt-6 flex min-h-[380px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50 px-6 text-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-sm">
+            <div className="mt-6 flex min-h-[380px] flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50 px-6 text-center dark:border-slate-600 dark:bg-slate-700">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white shadow-sm dark:bg-slate-600">
                 <ImageIcon size={28} />
               </div>
 
-              <h3 className="mt-5 text-lg font-bold text-slate-800">
+              <h3 className="mt-5 text-lg font-bold text-slate-800 dark:text-white">
                 Upload Class Photo
               </h3>
 
-              <p className="mt-2 max-w-sm text-sm leading-6 text-slate-500">
+              <p className="mt-2 max-w-sm text-sm leading-6 text-slate-500 dark:text-slate-300">
                 Make sure student faces are clearly visible.
               </p>
 
               <button
                 onClick={() => fileInputRef.current?.click()}
-                className="mt-6 flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white"
+                className="mt-6 flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
               >
                 <Upload size={18} />
                 Upload Photo
@@ -799,7 +814,7 @@ function Attendance() {
               />
             </div>
           ) : (
-            <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200">
+            <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-600">
               <img
                 src={image}
                 alt="Classroom preview"
@@ -811,7 +826,7 @@ function Attendance() {
           {image && (
             <>
               {statusMessage && (
-                <div className="mt-4 rounded-xl bg-blue-50 px-4 py-3 text-sm font-medium text-blue-600">
+                <div className="mt-4 rounded-xl bg-blue-50 px-4 py-3 text-sm font-medium text-blue-600 dark:bg-blue-950/30 dark:text-blue-400">
                   {statusMessage}
                 </div>
               )}
@@ -819,11 +834,14 @@ function Attendance() {
               <button
                 onClick={handleAttendance}
                 disabled={processing}
-                className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-4 text-sm font-semibold text-white disabled:opacity-70"
+                className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-4 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:opacity-70"
               >
                 {processing ? (
                   <>
-                    <ScanFace className="animate-pulse" size={20} />
+                    <ScanFace
+                      className="animate-pulse"
+                      size={20}
+                    />
                     AI is Recognizing Faces...
                   </>
                 ) : (

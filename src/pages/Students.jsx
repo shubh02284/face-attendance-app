@@ -203,11 +203,11 @@ function Students() {
             STUDENT MANAGEMENT
           </p>
 
-          <h1 className="mt-2 text-3xl font-bold text-slate-900">
+          <h1 className="mt-2 text-3xl font-bold text-slate-900 dark:text-white">
             Students
           </h1>
 
-          <p className="mt-2 text-slate-500">
+          <p className="mt-2 text-slate-500 dark:text-slate-400">
             Add students and enroll their faces for AI recognition.
           </p>
         </div>
@@ -230,19 +230,19 @@ function Students() {
         </div>
       )}
 
-      <div className="mt-8 rounded-2xl border border-slate-200 bg-white shadow-sm">
-        <div className="flex items-center justify-between border-b border-slate-100 p-6">
+      <div className="mt-8 rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800">
+        <div className="flex items-center justify-between border-b border-slate-100 p-6 dark:border-slate-700">
           <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-700">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-200 dark:text-slate-300">
               <Users size={21} />
             </div>
 
             <div>
-              <h2 className="font-bold text-slate-900">
+              <h2 className="font-bold text-slate-900 dark:text-white">
                 All Students
               </h2>
 
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-slate-500 dark:text-slate-400">
                 {students.length} student
                 {students.length !== 1 ? "s" : ""} registered
               </p>
@@ -251,7 +251,7 @@ function Students() {
         </div>
 
         {loading ? (
-          <div className="flex items-center justify-center gap-3 p-12 text-slate-500">
+          <div className="flex items-center justify-center gap-3 p-12 text-slate-500 dark:text-slate-400">
             <Loader2 size={22} className="animate-spin" />
             Loading students...
           </div>
@@ -262,18 +262,18 @@ function Students() {
               className="mx-auto text-slate-300"
             />
 
-            <h3 className="mt-4 font-bold text-slate-800">
+            <h3 className="mt-4 font-bold text-slate-800 dark:text-white">
               No students found
             </h3>
 
-            <p className="mt-2 text-sm text-slate-500">
+            <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
               Add your first student to start using face recognition.
             </p>
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full min-w-[700px]">
-              <thead className="bg-slate-50 text-left text-xs uppercase tracking-wider text-slate-400">
+              <thead className="bg-slate-50 text-left dark:bg-slate-700 text-xs uppercase tracking-wider text-slate-400">
                 <tr>
                   <th className="px-6 py-4">Student</th>
                   <th className="px-6 py-4">Roll No</th>
@@ -288,7 +288,7 @@ function Students() {
                 {students.map((student) => (
                   <tr
                     key={student._id}
-                    className="border-t border-slate-100"
+                    className="border-t border-slate-100 dark:border-slate-700"
                   >
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
@@ -299,37 +299,37 @@ function Students() {
                             className="h-10 w-10 rounded-full object-cover"
                           />
                         ) : (
-                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-500">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 font-bold text-slate-500 dark:bg-slate-700 dark:text-slate-300 dark:text-slate-400">
                             {student.name?.charAt(0)?.toUpperCase()}
                           </div>
                         )}
 
-                        <p className="font-semibold text-slate-800">
+                        <p className="font-semibold text-slate-800 dark:text-white">
                           {student.name}
                         </p>
                       </div>
                     </td>
 
-                    <td className="px-6 py-4 text-sm font-medium text-slate-600">
+                    <td className="px-6 py-4 text-sm font-medium text-slate-600 dark:text-slate-300">
                       {student.rollNo}
                     </td>
 
-                    <td className="px-6 py-4 text-sm text-slate-600">
+                    <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">
                       {student.branch}
                     </td>
 
-                    <td className="px-6 py-4 text-sm text-slate-600">
+                    <td className="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">
                       {student.semester}
                     </td>
 
                     <td className="px-6 py-4">
                       {student.faceEnrolled ? (
-                        <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-600">
+                        <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400">
                           <ScanFace size={14} />
                           Enrolled
                         </span>
                       ) : (
-                        <span className="rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-red-500">
+                        <span className="rounded-full bg-red-50 px-3 py-1 text-xs font-semibold text-red-500 dark:bg-red-950/40 dark:text-red-400">
                           Not Enrolled
                         </span>
                       )}
@@ -338,7 +338,7 @@ function Students() {
                     <td className="px-6 py-4 text-right">
                       <button
                         onClick={() => handleDelete(student._id)}
-                        className="rounded-lg p-2 text-red-500 transition hover:bg-red-50"
+                        className="rounded-lg p-2 text-red-500 transition hover:bg-red-50 dark:hover:bg-red-950/30"
                         title="Delete Student"
                       >
                         <Trash2 size={19} />
@@ -354,14 +354,14 @@ function Students() {
 
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4">
-          <div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl">
+          <div className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl dark:bg-slate-800">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-xl font-bold text-slate-900">
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">
                   Add Student
                 </h2>
 
-                <p className="mt-1 text-sm text-slate-500">
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                   Upload one clear face photo for AI enrollment.
                 </p>
               </div>
@@ -369,7 +369,7 @@ function Students() {
               <button
                 type="button"
                 onClick={handleCloseForm}
-                className="rounded-lg p-2 text-slate-500 hover:bg-slate-100"
+                className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-700"
               >
                 <X size={21} />
               </button>
@@ -386,7 +386,7 @@ function Students() {
               className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2"
             >
               <div>
-                <label className="text-sm font-semibold text-slate-700">
+                <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">
                   Student Name
                 </label>
 
@@ -396,12 +396,12 @@ function Students() {
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Enter student name"
                   required
-                  className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-slate-900"
+                  className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-slate-800 outline-none dark:border-slate-600 dark:bg-slate-700 dark:text-white focus:border-slate-900"
                 />
               </div>
 
               <div>
-                <label className="text-sm font-semibold text-slate-700">
+                <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">
                   Roll Number
                 </label>
 
@@ -411,12 +411,12 @@ function Students() {
                   onChange={(e) => setRollNo(e.target.value)}
                   placeholder="Enter roll number"
                   required
-                  className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:border-slate-900"
+                  className="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 text-slate-800 outline-none dark:border-slate-600 dark:bg-slate-700 dark:text-white focus:border-slate-900"
                 />
               </div>
 
               <div>
-                <label className="text-sm font-semibold text-slate-700">
+                <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">
                   Branch
                 </label>
 
@@ -424,7 +424,7 @@ function Students() {
                   value={branch}
                   onChange={(e) => setBranch(e.target.value)}
                   required
-                  className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-slate-900"
+                  className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-800 outline-none dark:border-slate-600 dark:bg-slate-700 dark:text-white focus:border-slate-900"
                 >
                   <option value="">Select Branch</option>
                   <option value="MCA">MCA</option>
@@ -434,7 +434,7 @@ function Students() {
               </div>
 
               <div>
-                <label className="text-sm font-semibold text-slate-700">
+                <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">
                   Semester
                 </label>
 
@@ -442,7 +442,7 @@ function Students() {
                   value={semester}
                   onChange={(e) => setSemester(e.target.value)}
                   required
-                  className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 outline-none focus:border-slate-900"
+                  className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-800 outline-none dark:border-slate-600 dark:bg-slate-700 dark:text-white focus:border-slate-900"
                 >
                   <option value="">Select Semester</option>
                   <option value="Semester 1">Semester 1</option>
@@ -453,7 +453,7 @@ function Students() {
               </div>
 
               <div className="sm:col-span-2">
-                <label className="text-sm font-semibold text-slate-700">
+                <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">
                   Face Photo
                 </label>
 
@@ -467,7 +467,7 @@ function Students() {
                 />
 
                 {faceImage && (
-                  <div className="mt-4 flex items-center gap-4 rounded-xl bg-slate-50 p-4">
+                  <div className="mt-4 flex items-center gap-4 rounded-xl bg-slate-50 p-4 dark:bg-slate-700">
                     <img
                       src={faceImage}
                       alt="Preview"
@@ -475,13 +475,13 @@ function Students() {
                     />
 
                     <div>
-                      <p className="flex items-center gap-2 text-sm font-semibold text-slate-700">
+                      <p className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
                         <Camera size={17} />
                         Photo selected
                       </p>
 
                       {faceMessage && (
-                        <p className="mt-1 text-sm text-slate-500">
+                        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                           {faceMessage}
                         </p>
                       )}

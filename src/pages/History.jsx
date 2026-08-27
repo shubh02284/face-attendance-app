@@ -90,7 +90,7 @@ function History() {
   if (loading) {
     return (
       <div className="flex min-h-[400px] items-center justify-center">
-        <p className="text-sm font-medium text-slate-500">
+        <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
           Loading attendance history...
         </p>
       </div>
@@ -126,60 +126,60 @@ function History() {
           ATTENDANCE RECORDS
         </p>
 
-        <h1 className="mt-2 text-3xl font-bold text-slate-900">
+        <h1 className="mt-2 text-3xl font-bold text-slate-900 dark:text-white">
           Attendance History
         </h1>
 
-        <p className="mt-2 text-slate-500">
+        <p className="mt-2 text-slate-500 dark:text-slate-400">
           View and manage previously recorded attendance sessions.
         </p>
       </div>
 
       <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+        <div className="rounded-2xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800 p-6 shadow-sm">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-950/40 dark:text-blue-400">
             <CalendarDays size={22} />
           </div>
 
-          <p className="mt-5 text-sm font-medium text-slate-500">
+          <p className="mt-5 text-sm font-medium text-slate-500 dark:text-slate-400">
             Total Classes
           </p>
 
-          <h2 className="mt-1 text-3xl font-bold text-slate-900">
+          <h2 className="mt-1 text-3xl font-bold text-slate-900 dark:text-white">
             {totalClasses}
           </h2>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+        <div className="rounded-2xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800 p-6 shadow-sm">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400">
             <UserCheck size={22} />
           </div>
 
-          <p className="mt-5 text-sm font-medium text-slate-500">
+          <p className="mt-5 text-sm font-medium text-slate-500 dark:text-slate-400">
             Total Present
           </p>
 
-          <h2 className="mt-1 text-3xl font-bold text-slate-900">
+          <h2 className="mt-1 text-3xl font-bold text-slate-900 dark:text-white">
             {totalPresent.toLocaleString()}
           </h2>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-red-50 text-red-500">
+        <div className="rounded-2xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800 p-6 shadow-sm">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-red-50 text-red-500 dark:bg-red-950/40 dark:text-red-400">
             <UserX size={22} />
           </div>
 
-          <p className="mt-5 text-sm font-medium text-slate-500">
+          <p className="mt-5 text-sm font-medium text-slate-500 dark:text-slate-400">
             Total Absent
           </p>
 
-          <h2 className="mt-1 text-3xl font-bold text-slate-900">
+          <h2 className="mt-1 text-3xl font-bold text-slate-900 dark:text-white">
             {totalAbsent.toLocaleString()}
           </h2>
         </div>
       </div>
 
-      <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+      <div className="mt-8 rounded-2xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800 p-5 shadow-sm">
         <div className="relative">
           <Search
             size={19}
@@ -191,35 +191,35 @@ function History() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by subject, branch, semester, section or date..."
-            className="w-full rounded-xl border border-slate-200 py-3 pl-11 pr-4 text-sm outline-none transition focus:border-slate-400"
+            className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-11 pr-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-slate-400 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:placeholder:text-slate-400 dark:focus:border-slate-500"
           />
         </div>
       </div>
 
-      <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+      <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800 shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[850px]">
-            <thead className="border-b border-slate-200 bg-slate-50">
+            <thead className="border-b border-slate-200 bg-slate-50 dark:border-slate-700 dark:bg-slate-700">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   Date & Time
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   Class
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <th className="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   Subject
                 </th>
-                <th className="px-6 py-4 text-center text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <th className="px-6 py-4 text-center text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   Total
                 </th>
-                <th className="px-6 py-4 text-center text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <th className="px-6 py-4 text-center text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   Present
                 </th>
-                <th className="px-6 py-4 text-center text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <th className="px-6 py-4 text-center text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   Absent
                 </th>
-                <th className="px-6 py-4 text-center text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <th className="px-6 py-4 text-center text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   Action
                 </th>
               </tr>
@@ -230,10 +230,10 @@ function History() {
                 filteredData.map((record) => (
                   <tr
                     key={record.id}
-                    className="border-b border-slate-100 last:border-0 transition hover:bg-slate-50"
+                    className="border-b border-slate-100 dark:border-slate-700 last:border-0 transition hover:bg-slate-50 dark:hover:bg-slate-700"
                   >
                     <td className="px-6 py-4">
-                      <p className="font-medium text-slate-800">
+                      <p className="font-medium text-slate-800 dark:text-white">
                         {record.date}
                       </p>
 
@@ -243,7 +243,7 @@ function History() {
                     </td>
 
                     <td className="px-6 py-4">
-                      <p className="font-medium text-slate-800">
+                      <p className="font-medium text-slate-800 dark:text-white">
                         {record.branch} • Semester {record.semester}
                       </p>
 
@@ -252,22 +252,22 @@ function History() {
                       </p>
                     </td>
 
-                    <td className="px-6 py-4 text-sm font-medium text-slate-700">
+                    <td className="px-6 py-4 text-sm font-medium text-slate-700 dark:text-slate-300">
                       {record.subject}
                     </td>
 
-                    <td className="px-6 py-4 text-center font-semibold text-slate-700">
+                    <td className="px-6 py-4 text-center font-semibold text-slate-700 dark:text-slate-300">
                       {record.total}
                     </td>
 
                     <td className="px-6 py-4 text-center">
-                      <span className="rounded-lg bg-emerald-50 px-3 py-1.5 text-sm font-semibold text-emerald-700">
+                      <span className="rounded-lg bg-emerald-50 px-3 py-1.5 text-sm font-semibold text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-400">
                         {record.present}
                       </span>
                     </td>
 
                     <td className="px-6 py-4 text-center">
-                      <span className="rounded-lg bg-red-50 px-3 py-1.5 text-sm font-semibold text-red-600">
+                      <span className="rounded-lg bg-red-50 px-3 py-1.5 text-sm font-semibold text-red-600 dark:bg-red-950/40 dark:text-red-400">
                         {record.absent}
                       </span>
                     </td>
@@ -303,22 +303,22 @@ function History() {
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white shadow-2xl"
+            className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white shadow-2xl dark:bg-slate-800"
           >
-            <div className="flex items-center justify-between border-b border-slate-100 p-6">
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-700 p-6">
               <div>
-                <h2 className="text-xl font-bold text-slate-900">
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">
                   Attendance Details
                 </h2>
 
-                <p className="mt-1 text-sm text-slate-500">
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                   Class attendance session information.
                 </p>
               </div>
 
               <button
                 onClick={() => setSelectedRecord(null)}
-                className="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-900"
+                className="rounded-lg p-2 text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-700 dark:hover:text-white"
               >
                 <X size={20} />
               </button>
@@ -326,82 +326,82 @@ function History() {
 
             <div className="space-y-4 p-6">
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <div className="rounded-xl bg-slate-50 p-4">
-                  <div className="flex items-center gap-2 text-slate-500">
+                <div className="rounded-xl bg-slate-50 dark:bg-slate-700 p-4">
+                  <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
                     <CalendarDays size={16} />
                     <span className="text-xs font-medium">DATE</span>
                   </div>
 
-                  <p className="mt-2 font-semibold text-slate-800">
+                  <p className="mt-2 font-semibold text-slate-800 dark:text-white">
                     {selectedRecord.date}
                   </p>
                 </div>
 
-                <div className="rounded-xl bg-slate-50 p-4">
-                  <div className="flex items-center gap-2 text-slate-500">
+                <div className="rounded-xl bg-slate-50 dark:bg-slate-700 p-4">
+                  <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
                     <Clock size={16} />
                     <span className="text-xs font-medium">TIME</span>
                   </div>
 
-                  <p className="mt-2 font-semibold text-slate-800">
+                  <p className="mt-2 font-semibold text-slate-800 dark:text-white">
                     {selectedRecord.time}
                   </p>
                 </div>
               </div>
 
-              <div className="rounded-xl border border-slate-100 p-4">
-                <div className="flex items-center gap-2 text-slate-500">
+              <div className="rounded-xl border border-slate-100 dark:border-slate-700 p-4">
+                <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
                   <GraduationCap size={17} />
                   <span className="text-sm font-medium">Class</span>
                 </div>
 
-                <p className="mt-2 font-semibold text-slate-800">
+                <p className="mt-2 font-semibold text-slate-800 dark:text-white">
                   {selectedRecord.branch} • Semester {selectedRecord.semester}
                 </p>
 
-                <p className="mt-1 text-sm text-slate-500">
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                   Section {selectedRecord.section}
                 </p>
               </div>
 
-              <div className="rounded-xl border border-slate-100 p-4">
-                <div className="flex items-center gap-2 text-slate-500">
+              <div className="rounded-xl border border-slate-100 dark:border-slate-700 p-4">
+                <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
                   <BookOpen size={17} />
                   <span className="text-sm font-medium">Subject</span>
                 </div>
 
-                <p className="mt-2 font-semibold text-slate-800">
+                <p className="mt-2 font-semibold text-slate-800 dark:text-white">
                   {selectedRecord.subject}
                 </p>
               </div>
 
               <div className="grid grid-cols-3 gap-3">
-                <div className="rounded-xl bg-slate-50 p-4 text-center">
-                  <p className="text-xs text-slate-500">Total</p>
-                  <p className="mt-2 text-xl font-bold text-slate-900">
+                <div className="rounded-xl bg-slate-50 dark:bg-slate-700 p-4 text-center">
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Total</p>
+                  <p className="mt-2 text-xl font-bold text-slate-900 dark:text-white">
                     {selectedRecord.total}
                   </p>
                 </div>
 
                 <div className="rounded-xl bg-emerald-50 p-4 text-center">
                   <p className="text-xs text-emerald-600">Present</p>
-                  <p className="mt-2 text-xl font-bold text-emerald-700">
+                  <p className="mt-2 text-xl font-bold text-emerald-700 dark:text-emerald-400">
                     {selectedRecord.present}
                   </p>
                 </div>
 
                 <div className="rounded-xl bg-red-50 p-4 text-center">
-                  <p className="text-xs text-red-500">Absent</p>
-                  <p className="mt-2 text-xl font-bold text-red-600">
+                  <p className="text-xs text-red-500 dark:text-red-400">Absent</p>
+                  <p className="mt-2 text-xl font-bold text-red-600 dark:text-red-400">
                     {selectedRecord.absent}
                   </p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                <div className="rounded-xl border border-emerald-100">
-                  <div className="border-b border-emerald-100 bg-emerald-50 p-4">
-                    <p className="font-semibold text-emerald-700">
+                <div className="rounded-xl border border-emerald-100 dark:border-emerald-900/50">
+                  <div className="border-b border-emerald-100 bg-emerald-50 p-4 dark:border-emerald-900/50 dark:bg-emerald-950/40">
+                    <p className="font-semibold text-emerald-700 dark:text-emerald-400">
                       Present Students ({selectedRecord.presentStudents.length})
                     </p>
                   </div>
@@ -411,10 +411,10 @@ function History() {
                       selectedRecord.presentStudents.map((student, index) => (
                         <div
                           key={student.studentId || index}
-                          className="flex items-center justify-between border-b border-slate-100 py-3 last:border-0"
+                          className="flex items-center justify-between border-b border-slate-100 dark:border-slate-700 py-3 last:border-0"
                         >
                           <div>
-                            <p className="text-sm font-semibold text-slate-800">
+                            <p className="text-sm font-semibold text-slate-800 dark:text-white">
                               {student.name}
                             </p>
                             <p className="text-xs text-slate-400">
@@ -422,7 +422,7 @@ function History() {
                             </p>
                           </div>
 
-                          <span className="text-xs font-medium text-emerald-600">
+                          <span className="text-xs font-medium text-emerald-600 dark:text-emerald-400">
                             {student.confidence ?? 0}% match
                           </span>
                         </div>
@@ -435,9 +435,9 @@ function History() {
                   </div>
                 </div>
 
-                <div className="rounded-xl border border-red-100">
-                  <div className="border-b border-red-100 bg-red-50 p-4">
-                    <p className="font-semibold text-red-600">
+                <div className="rounded-xl border border-red-100 dark:border-red-900/50">
+                  <div className="border-b border-red-100 bg-red-50 p-4 dark:border-red-900/50 dark:bg-red-950/40">
+                    <p className="font-semibold text-red-600 dark:text-red-400">
                       Absent Students ({selectedRecord.absentStudents.length})
                     </p>
                   </div>
@@ -447,9 +447,9 @@ function History() {
                       selectedRecord.absentStudents.map((student, index) => (
                         <div
                           key={student.studentId || index}
-                          className="border-b border-slate-100 py-3 last:border-0"
+                          className="border-b border-slate-100 dark:border-slate-700 py-3 last:border-0"
                         >
-                          <p className="text-sm font-semibold text-slate-800">
+                          <p className="text-sm font-semibold text-slate-800 dark:text-white">
                             {student.name}
                           </p>
                           <p className="text-xs text-slate-400">
@@ -467,7 +467,7 @@ function History() {
               </div>
             </div>
 
-            <div className="border-t border-slate-100 p-6">
+            <div className="border-t border-slate-100 dark:border-slate-700 p-6">
               <button
                 onClick={() => setSelectedRecord(null)}
                 className="w-full rounded-xl bg-slate-900 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
