@@ -72,6 +72,90 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get("/summary", async (req, res) => {
+  try {
+    const { branch, semester, section, subject } = req.query;
+
+    if (!branch || !semester || !section || !subject) {
+      return res.status(400).json({
+        message:
+          "Please provide branch, semester, section and subject",
+      });
+    }
+
+    const attendanceRecords = await Attendance.find({
+      userId: req.user._id,
+      branch,
+      semester,
+      section,
+      subject,
+    });
+
+    const studentMap = {};
+
+    attendanceRecords.forEach((record) => {
+      record.presentStudents.forEach((student) => {
+        const id = student.studentId.toString();
+
+        if (!studentMap[id]) {
+          studentMap[id] = {
+            studentId: student.studentId,
+            name: student.name,
+            rollNo: student.rollNo,
+            present: 0,
+            absent: 0,
+          };
+        }
+
+        studentMap[id].present += 1;
+      });
+
+      record.absentStudents.forEach((student) => {
+        const id = student.studentId.toString();
+
+        if (!studentMap[id]) {
+          studentMap[id] = {
+            studentId: student.studentId,
+            name: student.name,
+            rollNo: student.rollNo,
+            present: 0,
+            absent: 0,
+          };
+        }
+
+        studentMap[id].absent += 1;
+      });
+    });
+
+    const students = Object.values(studentMap).map((student) => {
+      const total = student.present + student.absent;
+
+      return {
+        ...student,
+        total,
+        percentage:
+          total > 0
+            ? Number(((student.present / total) * 100).toFixed(1))
+            : 0,
+      };
+    });
+
+    res.json({
+      branch,
+      semester,
+      section,
+      subject,
+      totalClasses: attendanceRecords.length,
+      students,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to generate attendance summary",
+      error: error.message,
+    });
+  }
+});
+
 router.get("/report", async (req, res) => {
   try {
     const attendanceRecords = await Attendance.find({

@@ -16,6 +16,10 @@ function Classes() {
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [selectedClass, setSelectedClass] = useState(null);
+  const [selectedSubject, setSelectedSubject] = useState("");
+  const [attendanceSummary, setAttendanceSummary] = useState(null);
+  const [summaryLoading, setSummaryLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     branch: "",
@@ -127,6 +131,43 @@ function Classes() {
     } catch (error) {
       alert(error.message);
     }
+  };
+
+  const viewClass = async (item, subject = item.subjects?.[0] || "") => {
+    setSelectedClass(item);
+    setSelectedSubject(subject);
+    setAttendanceSummary(null);
+
+    if (!subject) return;
+
+    try {
+      setSummaryLoading(true);
+
+      const query = new URLSearchParams({
+        branch: item.branch,
+        semester: item.semester,
+        section: item.section,
+        subject,
+      });
+
+      const data = await apiRequest(`/attendance/summary?${query.toString()}`);
+      setAttendanceSummary(data);
+    } catch (error) {
+      alert(error.message || "Failed to load attendance summary.");
+    } finally {
+      setSummaryLoading(false);
+    }
+  };
+
+  const closeClassView = () => {
+    setSelectedClass(null);
+    setSelectedSubject("");
+    setAttendanceSummary(null);
+  };
+
+  const handleSubjectChange = async (subject) => {
+    if (!selectedClass) return;
+    await viewClass(selectedClass, subject);
   };
 
   const totalStudents = classes.reduce(
@@ -288,7 +329,10 @@ function Classes() {
                   </div>
                 </div>
 
-                <button className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 py-3 text-sm font-semibold text-slate-700 dark:border-slate-600 dark:text-slate-200 transition hover:bg-slate-50 dark:hover:bg-slate-700">
+                <button
+                  onClick={() => viewClass(item)}
+                  className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-700"
+                >
                   View Class
                   <ChevronRight size={17} />
                 </button>
@@ -313,6 +357,144 @@ function Classes() {
             </div>
           )}
         </>
+      )}
+
+      {selectedClass && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4 backdrop-blur-sm">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            className="max-h-[90vh] w-full max-w-5xl overflow-y-auto rounded-2xl bg-white shadow-2xl dark:bg-slate-800"
+          >
+            <div className="flex items-center justify-between border-b border-slate-100 p-6 dark:border-slate-700">
+              <div>
+                <p className="text-sm font-semibold tracking-wider text-slate-400">
+                  ATTENDANCE REGISTER
+                </p>
+                <h2 className="mt-1 text-2xl font-bold text-slate-900 dark:text-white">
+                  {selectedClass.branch} • {selectedClass.semester} • Section {selectedClass.section}
+                </h2>
+                <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                  {selectedClass.students} students
+                </p>
+              </div>
+
+              <button
+                onClick={closeClassView}
+                className="rounded-lg p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-900 dark:hover:bg-slate-700 dark:hover:text-white"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <div className="p-6">
+              <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">
+                Select Subject
+              </label>
+
+              <select
+                value={selectedSubject}
+                onChange={(e) => handleSubjectChange(e.target.value)}
+                className="w-full max-w-md rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none focus:border-slate-900 dark:border-slate-600 dark:bg-slate-700 dark:text-white"
+              >
+                <option value="">Select Subject</option>
+                {selectedClass.subjects?.map((subject) => (
+                  <option key={subject} value={subject}>
+                    {subject}
+                  </option>
+                ))}
+              </select>
+
+              {summaryLoading ? (
+                <div className="py-16 text-center text-sm text-slate-500 dark:text-slate-400">
+                  Loading attendance...
+                </div>
+              ) : attendanceSummary ? (
+                <>
+                  <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
+                    <div className="rounded-xl bg-slate-50 p-4 dark:bg-slate-700">
+                      <p className="text-xs text-slate-400">Total Classes</p>
+                      <p className="mt-1 text-2xl font-bold text-slate-900 dark:text-white">
+                        {attendanceSummary.totalClasses}
+                      </p>
+                    </div>
+
+                    <div className="rounded-xl bg-emerald-50 p-4 dark:bg-emerald-950/40">
+                      <p className="text-xs text-emerald-600 dark:text-emerald-400">Present</p>
+                      <p className="mt-1 text-2xl font-bold text-emerald-700 dark:text-emerald-400">
+                        {attendanceSummary.students.reduce((sum, s) => sum + s.present, 0)}
+                      </p>
+                    </div>
+
+                    <div className="rounded-xl bg-red-50 p-4 dark:bg-red-950/40">
+                      <p className="text-xs text-red-500 dark:text-red-400">Absent</p>
+                      <p className="mt-1 text-2xl font-bold text-red-600 dark:text-red-400">
+                        {attendanceSummary.students.reduce((sum, s) => sum + s.absent, 0)}
+                      </p>
+                    </div>
+
+                    <div className="rounded-xl bg-blue-50 p-4 dark:bg-blue-950/40">
+                      <p className="text-xs text-blue-600 dark:text-blue-400">Students</p>
+                      <p className="mt-1 text-2xl font-bold text-blue-700 dark:text-blue-400">
+                        {attendanceSummary.students.length}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-700">
+                    <table className="w-full min-w-[650px] text-left text-sm">
+                      <thead className="bg-slate-50 dark:bg-slate-700">
+                        <tr>
+                          <th className="px-4 py-3 font-semibold text-slate-600 dark:text-slate-300">Roll No</th>
+                          <th className="px-4 py-3 font-semibold text-slate-600 dark:text-slate-300">Student</th>
+                          <th className="px-4 py-3 text-center font-semibold text-slate-600 dark:text-slate-300">Present</th>
+                          <th className="px-4 py-3 text-center font-semibold text-slate-600 dark:text-slate-300">Absent</th>
+                          <th className="px-4 py-3 text-center font-semibold text-slate-600 dark:text-slate-300">Total</th>
+                          <th className="px-4 py-3 text-center font-semibold text-slate-600 dark:text-slate-300">Attendance</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {attendanceSummary.students.map((student) => (
+                          <tr key={student.studentId} className="border-t border-slate-100 dark:border-slate-700">
+                            <td className="px-4 py-3 font-medium text-slate-700 dark:text-slate-300">
+                              {student.rollNo}
+                            </td>
+                            <td className="px-4 py-3 font-semibold text-slate-900 dark:text-white">
+                              {student.name}
+                            </td>
+                            <td className="px-4 py-3 text-center text-emerald-600 dark:text-emerald-400">
+                              {student.present}
+                            </td>
+                            <td className="px-4 py-3 text-center text-red-500 dark:text-red-400">
+                              {student.absent}
+                            </td>
+                            <td className="px-4 py-3 text-center text-slate-600 dark:text-slate-300">
+                              {student.total}
+                            </td>
+                            <td className="px-4 py-3 text-center font-bold text-slate-900 dark:text-white">
+                              {student.percentage}%
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {attendanceSummary.students.length === 0 && (
+                    <div className="py-12 text-center text-sm text-slate-500 dark:text-slate-400">
+                      No attendance records found for this subject yet.
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="mt-8 rounded-xl bg-slate-50 p-8 text-center text-sm text-slate-500 dark:bg-slate-700 dark:text-slate-300">
+                  Select a subject to view student attendance.
+                </div>
+              )}
+            </div>
+          </motion.div>
+        </div>
       )}
 
       {showModal && (
